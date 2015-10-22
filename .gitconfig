@@ -1,0 +1,17 @@
+[user]
+  name = James Bjorkman
+  email = james@bjorkman.ca
+
+[push]
+  default = current
+
+[alias]
+  co = checkout
+  lg = log --pretty=format:'%C(yellow)%h%C(red)%d %C(blue)%an %C(white)%s %C(reset)- %ar%C(reset)'
+  delete = branch -D
+  rename = branch -m
+  new = checkout -b
+
+[core]
+  excludesfile = $HOME/.gitignore_global
+  editor = vim
