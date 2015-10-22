@@ -26,16 +26,15 @@ set autoindent
 set number
 set backspace=2
 set backupcopy=yes
-set colorcolumn=80,120
+" set colorcolumn=80,120
 set directory-=.
 set encoding=utf-8
 set expandtab
 set incsearch
-set hlsearch
 set ignorecase
 set iskeyword+=-
 set list
-set listchars=tab:▸\ ,trail:▫,eol:¡
+set listchars=tab:▸\ ,trail:▫,eol:„
 set scrolloff=10
 set shiftwidth=2
 set showcmd
