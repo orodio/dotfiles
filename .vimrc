@@ -34,7 +34,7 @@ set incsearch
 set ignorecase
 set iskeyword+=-
 set list
-set listchars=tab:▸\ ,trail:▫,eol:„
+set listchars=tab:▸\ ,trail:▫
 set scrolloff=10
 set shiftwidth=2
 set showcmd
