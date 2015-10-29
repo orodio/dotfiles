@@ -13,6 +13,7 @@ Plugin 'orodio/rainbow'
 Plugin 'orodio/vim-elixir'
 Plugin 'orodio/vim-handlebars'
 Plugin 'orodio/vim-fugitive'
+Plugin 'orodio/vim-json'
 Plugin 'vim-scripts/Align'
 Plugin 'vim-scripts/DeleteTrailingWhitespace'
 call vundle#end()
@@ -33,6 +34,7 @@ set expandtab
 set incsearch
 set ignorecase
 set iskeyword+=-
+set lazyredraw
 set list
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=10
@@ -55,6 +57,7 @@ let g:rainbow_conf={ 'ctermfgs' : [66,24,2,28,5,26,48,26,44,32,21,40,2,5,8,3] }
 inoremap jj <ESC>
 nnoremap ,<space> :DeleteTrailingWhitespace<CR>:nohlsearch<cr>
 
+nmap ,t :tabnew<cr>
 nmap ,l :Align<space>
 nmap ,e :NERDTreeToggle<cr>
 nmap ,; :CtrlP<cr>
@@ -63,9 +66,9 @@ set exrc
 set secure
 
 function! s:RemoveConflictingAlignMaps()
-    if exists("g:loaded_AlignMapsPlugin")
-          AlignMapsClean
-            endif
-          endfunction
-          command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
-          silent! autocmd VimEnter * RemoveConflictingAlignMaps
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
