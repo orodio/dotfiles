@@ -8,7 +8,7 @@ Plugin 'orodio/vim-commentary'
 Plugin 'orodio/nerdtree'
 Plugin 'orodio/ctrlp.vim'
 Plugin 'orodio/Spacegray.vim'
-Plugin 'orodio/vim-gitgutter'
+" Plugin 'orodio/vim-gitgutter'
 Plugin 'orodio/rainbow'
 Plugin 'orodio/vim-elixir'
 Plugin 'orodio/vim-handlebars'
@@ -27,7 +27,7 @@ set autoindent
 set number
 set backspace=2
 set backupcopy=yes
-" set colorcolumn=80,120
+set colorcolumn=80,120
 set directory-=.
 set encoding=utf-8
 set expandtab
