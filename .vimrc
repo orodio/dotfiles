@@ -16,6 +16,11 @@ Plugin 'orodio/vim-fugitive'
 Plugin 'orodio/vim-json'
 Plugin 'vim-scripts/Align'
 Plugin 'vim-scripts/DeleteTrailingWhitespace'
+Plugin 'atelierbram/vim-colors_duotones'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'pmsorhaindo/syntastic-local-eslint.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 call vundle#end()
 filetype plugin indent on
 
@@ -27,7 +32,7 @@ set autoindent
 set number
 set backspace=2
 set backupcopy=yes
-set colorcolumn=80,120
+" set colorcolumn=80,120
 set directory-=.
 set encoding=utf-8
 set expandtab
@@ -53,6 +58,7 @@ set nowrap
 
 let g:rainbow_active=1
 let g:rainbow_conf={ 'ctermfgs' : [66,24,2,28,5,26,48,26,44,32,21,40,2,5,8,3] }
+let g:jsx_ext_required=0 " jsx highlighting in .js files
 
 inoremap jj <ESC>
 nnoremap ,<space> :DeleteTrailingWhitespace<CR>:nohlsearch<cr>
@@ -72,3 +78,14 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" Syntastic
+" let g:syntastic_javascript_checkers = ['eslint']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
