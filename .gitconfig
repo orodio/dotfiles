@@ -12,7 +12,10 @@
   del = branch -D
   rename = branch -m
   new = checkout -b
+  branch = branch -vv
 
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
+[credential]
+	helper = cache

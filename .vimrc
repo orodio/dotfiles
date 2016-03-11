@@ -21,11 +21,13 @@ Plugin 'atelierbram/vim-colors_duotones'
 " Plugin 'pmsorhaindo/syntastic-local-eslint.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-cucumber'
 call vundle#end()
 filetype plugin indent on
 
 syntax enable
-colorscheme spacegray
+colorscheme delek
+" colorscheme spacegray
 
 set t_Co=256
 set autoindent
@@ -59,6 +61,7 @@ set nowrap
 let g:rainbow_active=1
 let g:rainbow_conf={ 'ctermfgs' : [66,24,2,28,5,26,48,26,44,32,21,40,2,5,8,3] }
 let g:jsx_ext_required=0 " jsx highlighting in .js files
+" let g:NERDTreeWinPos='right'
 
 inoremap jj <ESC>
 nnoremap ,<space> :DeleteTrailingWhitespace<CR>:nohlsearch<cr>
@@ -79,13 +82,4 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
-" Syntastic
-" let g:syntastic_javascript_checkers = ['eslint']
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
+" au Befread.BufNewFile *.feature set filetype=gherkin
