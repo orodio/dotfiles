@@ -11,6 +11,7 @@ fi
 # User specific aliases and functions
 
 alias la="ls -aGgh"
+alias tmux="TERM=xterm-256color tmux"
 
 __git_ps1 () {
   local b="$(git symbolic-ref HEAD 2>/dev/null)";
