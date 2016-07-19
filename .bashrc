@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+[[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
@@ -20,6 +22,6 @@ __git_ps1 () {
   fi
 }
 
-PS1="\[\033[0;35m\]\$(__git_ps1)\[\033[0m\] \[\033[0;33m\]\W\[\033[0m\] \$ "
+PS1="\[\033[0;35m\]\$(__git_ps1)\[\033[0m\] \[\033[0;33m\]ಠ_ಠ\[\033[0m\] "
 
 PATH="$PATH:$HOME/selenium_drivers"

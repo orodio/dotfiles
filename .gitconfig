@@ -1,21 +1,26 @@
 [user]
-  name = James Bjorkman
-  email = james@bjorkman.ca
+name = James Bjorkman
+email = james@bjorkman.ca
+signingkey = 672DB161
 
 [push]
-  default = current
+default = current
 
 [alias]
-  co = checkout
-  lg = log --pretty=format:'%C(yellow)%h%C(red)%d %C(blue)%an %C(white)%s %C(reset)- %ar%C(reset)'
-  delete = branch -D
-  del = branch -D
-  rename = branch -m
-  new = checkout -b
-  branch = branch -vv
+co = checkout
+lg = log --pretty=format:'%C(yellow)%h%C(red)%d %C(blue)%an %C(white)%s %C(reset)- %ar%C(reset)'
+delete = branch -D
+del = branch -D
+rename = branch -m
+new = checkout -b
+branch = branch -vv
 
 [core]
-  excludesfile = ~/.gitignore_global
-  editor = vim
+excludesfile = ~/.gitignore_global
+editor = vim
+
 [credential]
-	helper = cache
+helper = cache
+
+[commit]
+gpgsign = true

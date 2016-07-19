@@ -6,27 +6,28 @@ call vundle#begin()
 Plugin 'orodio/Vundle.vim'
 Plugin 'orodio/vim-commentary'
 Plugin 'orodio/nerdtree'
-Plugin 'orodio/vim-vinegar'
+" Plugin 'orodio/vim-vinegar'
 Plugin 'orodio/ctrlp.vim'
-Plugin 'orodio/Spacegray.vim'
-Plugin 'orodio/vim-gitgutter'
+" Plugin 'orodio/Spacegray.vim'
+" Plugin 'orodio/vim-gitgutter'
 Plugin 'orodio/rainbow'
 Plugin 'orodio/vim-elixir'
-Plugin 'orodio/vim-handlebars'
-Plugin 'orodio/vim-fugitive'
-Plugin 'orodio/vim-json'
+" Plugin 'orodio/vim-handlebars'
+" Plugin 'orodio/vim-fugitive'
+" Plugin 'orodio/vim-json'
 Plugin 'vim-scripts/Align'
 Plugin 'vim-scripts/DeleteTrailingWhitespace'
-" Plugin 'atelierbram/vim-colors_duotones'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'pmsorhaindo/syntastic-local-eslint.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-cucumber'
-" Plugin 'orodio/vim-kings-away'
+" Plugin 'pangloss/vim-javascript'
+" Plugin 'mxw/vim-jsx'
+" Plugin 'tpope/vim-cucumber'
 Plugin 'orodio/vim-luna'
-Plugin 'orodio/vim-airline'
+" Plugin 'orodio/vim-airline'
 Plugin 'orodio/1989.vim'
+Plugin 'rakr/vim-two-firewatch'
+Plugin 'orodio/rust.vim'
+Plugin 'orodio/vim-colors-japanesque'
+Plugin 'orodio/CSApprox'
+Plugin 'orodio/vim-toml'
 call vundle#end()
 filetype plugin indent on
 
@@ -34,9 +35,16 @@ syntax enable
 " colorscheme delek
 " colorscheme spacegray
 " colorscheme luna-term
-colorscheme 1989
+" colorscheme 1989
 
-set t_Co=256
+colorscheme two-firewatch
+let g:two_firewatch_italics=1
+set background=dark
+" set background=light
+" let g:airline_theme='twofirewatch'
+
+
+" set t_Co=256
 set autoindent
 set number
 set backspace=2
@@ -61,7 +69,7 @@ set wildmenu
 set wildmode=longest,list,full
 set mouse=a
 set mousefocus
-set whichwrap+=<,>,h,l,[,]
+" set whichwrap+=<,>,h,l,[,]
 set laststatus=2
 set nowrap
 
@@ -98,6 +106,6 @@ hi Visual ctermfg=0 ctermbg=3
 " hi StatusLineNC ctermbg=6
 
 let g:airline_powerline_fonts=1
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
