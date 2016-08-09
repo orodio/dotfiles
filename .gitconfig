@@ -1,7 +1,7 @@
 [user]
 name = James Bjorkman
 email = james@bjorkman.ca
-signingkey = 672DB161
+signingkey = 350117BEA90DB34D
 
 [push]
 default = current
