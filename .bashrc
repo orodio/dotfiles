@@ -26,3 +26,6 @@ PS1="\[\033[0;35m\]\$(__git_ps1)\[\033[0m\] \[\033[0;33m\]+>\[\033[0m\] "
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
+
+chmod +x ~/.vocab
+~/.vocab
