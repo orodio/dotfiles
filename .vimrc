@@ -93,6 +93,8 @@ nmap ,l :Align<space>
 nmap ,e :NERDTreeToggle<cr>
 nmap ,; :CtrlP<cr>
 
+nmap \c <esc>:w<cr>:! git add %<cr>:! git commit % -m "AUTO: %"<cr>
+
 set exrc
 set secure
 
