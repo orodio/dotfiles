@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 [[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
@@ -14,6 +14,7 @@ fi
 
 alias la="ls -aGgh"
 alias tmux="TERM=xterm-256color tmux"
+alias cdd="cd ~/work/bullclip.web"
 
 # colors in man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -40,14 +41,10 @@ __prompt () {
 }
 
 __line () {
-  printf '\n\e[2;90m%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+  printf '\n\e[2;90m%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' +
 }
 
 PS1="\$(__line)\n\n \e[31m\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
-
-
-# chmod d+x ~/.vocab
-# ~/.vocab
