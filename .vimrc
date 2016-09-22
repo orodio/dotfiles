@@ -37,7 +37,6 @@ syntax enable
 " colorscheme two-firewatch
 " let g:two_firewatch_italics=1
 " set background=dark
-" set background=light
 " let g:airline_theme='twofirewatch'
 colorscheme jellybeans
 let g:jellybeans_use_term_italics = 1
