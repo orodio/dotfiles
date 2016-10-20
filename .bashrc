@@ -15,22 +15,29 @@ fi
 alias la="ls -aGgh"
 alias tmux="TERM=xterm-256color tmux"
 alias twig="git branch -vv"
-# alias cdd="cd ~/work/bullclip.web; git fetch; twig;"
+
+__div () {
+  printf "\033[1;34m\n*** *** *** *** *** ***\n\n\033[0m"
+}
+
+wat () {
+  __div
+  git status
+  __div
+  twig
+  __div
+  git lg --graph --grep="Merge pull request" --invert-grep --since="7 days ago"
+  __div
+}
 
 cdd () {
-  printf "\n*** *** *** *** *** ***\n\n"
+  __div
   printf "+> ~/work/bullclip.web\n"
   cd ~/work/bullclip.web
-  printf "\n*** *** *** *** *** ***\n\n"
+  __div
   printf "+> get fetch\n"
   git fetch
-  printf "\n*** *** *** *** *** ***\n\n"
-  git status
-  printf "\n*** *** *** *** *** ***\n\n"
-  twig
-  printf "\n*** *** *** *** *** ***\n\n"
-  git lg --graph --grep="Merge pull request" --invert-grep --since="7 days ago"
-  printf "\n*** *** *** *** *** ***\n\n"
+  wat
 }
 
 __git_branch () {
