@@ -45,7 +45,7 @@ let g:jellybeans_overrides = {
       \}
 
 
-" set t_Co=256
+set t_Co=256
 set autoread
 set nobackup
 set nowritebackup
@@ -74,7 +74,8 @@ set scrolloff=3
 set shiftwidth=2
 set ttyfast
 set fileformats=unix,mac,dos
-set cursorline
+" set cursorline
+" set cursorcolumn
 " set showcmd
 set softtabstop=2
 set wildmenu

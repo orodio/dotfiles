@@ -7,23 +7,31 @@ fi
 
 [[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
+# http://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
 
 alias la="ls -aGgh"
 alias tmux="TERM=xterm-256color tmux"
-alias cdd="cd ~/work/bullclip.web"
+alias twig="git branch -vv"
+# alias cdd="cd ~/work/bullclip.web; git fetch; twig;"
 
-# colors in man pages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+cdd () {
+  printf "\n*** *** *** *** *** ***\n\n"
+  printf "+> ~/work/bullclip.web\n"
+  cd ~/work/bullclip.web
+  printf "\n*** *** *** *** *** ***\n\n"
+  printf "+> get fetch\n"
+  git fetch
+  printf "\n*** *** *** *** *** ***\n\n"
+  git status
+  printf "\n*** *** *** *** *** ***\n\n"
+  twig
+  printf "\n*** *** *** *** *** ***\n\n"
+  git lg --graph --grep="Merge pull request" --invert-grep --since="7 days ago"
+  printf "\n*** *** *** *** *** ***\n\n"
+}
 
 __git_branch () {
   local b="$(git symbolic-ref HEAD 2>/dev/null)";
@@ -34,17 +42,15 @@ __git_branch () {
 
 __prompt () {
   if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-    printf "\e[33m*>"
+    printf "∵"
   else
-    printf "\e[33m+>"
+    printf "∴"
   fi
 }
 
-__line () {
-  printf '\n\e[2;90m%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' +
-}
+PS1=" \[\033[1;31m\]\$(__prompt)\[\033[0m\] "
 
-PS1="\$(__line)\n\n \e[31m\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
+# PS1="\$(__line)\n\n \e[31m\]\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
