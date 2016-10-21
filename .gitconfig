@@ -8,7 +8,7 @@ default = current
 
 [alias]
 co = checkout
-lg = log --pretty=format:'%C(yellow)%h %C(blue)%<(15,trunc)%an %C(red)%G? %C(green)%ci %C(white)%s%C(reset)'
+lg = log --pretty=format:'%C(cyan bold)%G?%C(reset) %C(yellow)%h %C(blue)%<(15,trunc)%an %C(green dim)%ci%C(reset) %C(white)%s %C(bold)%C(magenta)%d%C(reset)'
 delete = branch -D
 del = branch -D
 rename = branch -m
