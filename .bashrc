@@ -17,7 +17,7 @@ alias tmux="TERM=xterm-256color tmux"
 alias twig="git branch -vv"
 
 __div () {
-  printf "\033[1;34m\n*** *** *** *** *** ***\n\n\033[0m"
+  printf "\033[1;34m\n    *** *** *** *** *** ***\n\n\033[0m"
 }
 
 wat () {
@@ -32,10 +32,10 @@ wat () {
 
 cdd () {
   __div
-  printf "+> ~/work/bullclip.web\n"
+  printf "\033[1;35m +> \033[1;36m~/work/bullclip.web\033[0m\n"
   cd ~/work/bullclip.web
   __div
-  printf "+> get fetch\n"
+  printf "\033[1;35m +> \033[1;36mgit fetch\033[0m\n"
   git fetch
   wat
 }
@@ -47,15 +47,21 @@ __git_branch () {
   fi
 }
 
+RED=$(tput setaf 1)
+
 __prompt () {
   if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-    printf "∵"
+    printf "*>"
   else
-    printf "∴"
+    printf "+>"
   fi
 }
 
-PS1=" \[\033[1;31m\]\$(__prompt)\[\033[0m\] "
+trap 'echo -ne "\033[0m"' DEBUG
+
+PS1=" \[\033[1;35m\]\$(__prompt)\[\033[1;36m\] "
+PS2=" \[\033[1;35m\] >\[\033[1;36m\] "
+# PS1=" \[\033[1;35m\]\$(__prompt)\[\033[0m\] "
 
 # PS1="\$(__line)\n\n \e[31m\]\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
 
