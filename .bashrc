@@ -12,7 +12,7 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-alias la="ls -aGgh"
+alias la="ls -aGgh --color"
 alias tmux="TERM=xterm-256color tmux"
 alias twig="git branch -vv"
 
@@ -26,7 +26,7 @@ wat () {
   __div
   twig
   __div
-  git lg --graph --grep="Merge pull request" --invert-grep --since="7 days ago"
+  git lg --graph --grep="Merge pull request" --invert-grep --since="14 days ago"
   __div
 }
 
