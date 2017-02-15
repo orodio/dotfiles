@@ -1,20 +1,28 @@
 # .bashrc
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
-fi
+# if [ -f /etc/bashrc ]; then
+  # . /etc/bashrc
+# fi
 
-[[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
+# [[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
 
 # http://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+# if [ -f ~/.git-completion.bash ]; then
+#   . ~/.git-completion.bash
+# fi
+
+# mac bash completion
+# https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
 
-alias la="ls -aGgh --color"
+# alias la="ls -aGgh --color"
+alias la="ls -aGgh"
 alias tmux="TERM=xterm-256color tmux"
-alias twig="git branch -vv"
+alias twig="git branch -vv --sort=-authordate"
+alias weather="curl -s wttr.in/Melbourne"
 
 __div () {
   printf "\033[1;34m\n    *** *** *** *** *** ***\n\n\033[0m"
@@ -26,7 +34,7 @@ wat () {
   __div
   twig
   __div
-  git lg --graph --grep="Merge pull request" --invert-grep --since="14 days ago"
+  git lg --graph --since="3 days ago"
   __div
 }
 
@@ -67,3 +75,5 @@ PS2=" \[\033[1;35m\] >\[\033[1;36m\] "
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
+
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH

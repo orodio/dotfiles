@@ -1,5 +1,5 @@
 [user]
-name = James Bjorkman
+name = James Hunter
 email = james@bjorkman.ca
 signingkey = 350117BEA90DB34D
 
@@ -14,6 +14,7 @@ del = branch -D
 rename = branch -m
 new = checkout -b
 branch = branch -vv
+	quick-stats = ! /usr/local/bin/git-quick-stats
 
 [core]
 excludesfile = ~/.gitignore_global
