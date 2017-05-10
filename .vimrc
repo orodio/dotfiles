@@ -20,6 +20,13 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-surround'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-fugitive'
+Plugin 'craigemery/vim-autotag'
+Plugin 'b0wter/spacecadet'
+Plugin 'nightsense/seabird'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'fleischie/vim-styled-components'
 " Plugin 'orodio/vim-luna'
 " Plugin 'orodio/1989.vim'
 " Plugin 'orodio/vim-colors-japanesque'
@@ -80,6 +87,8 @@ set tags=./tags;,tags;
 set foldlevel=2
 set foldmethod=syntax
 set nofoldenable
+set splitright
+set splitbelow
 " set colorcolumn=80,120
 " set cursorline
 " set cursorcolumn
@@ -97,14 +106,16 @@ let g:javascript_plugin_flow=1
 map ; :
 inoremap jj <ESC>
 nnoremap ,<space> :DeleteTrailingWhitespace<CR>:nohlsearch<cr>
-nmap \g <esc>$<left><left>:vertical wincmd f<cr>
+nmap \g <esc>$<left><left><left><left>:vertical wincmd f<cr>
 
 nmap ,t :tabnew<cr>
 nmap ,l :Align<space>
 nmap ,e :NERDTreeToggle<cr>
 nmap ,; :CtrlP<cr>
 
-nmap \c <esc>:w<cr>:! git commit % -m "AUTO: %"<cr>
+nmap \c <esc>:w<cr>:! git commit % -nm "AUTO: %"<cr>
+nmap \[ <esc>:w<cr>:! npm run lint<cr>
+nmap \] <esc>:w<cr>:! npm run test<cr>
 
 set exrc
 set secure
@@ -124,7 +135,22 @@ if has('autocmd')
   endif
 endif
 
-hi search cterm=none ctermbg=3 ctermfg=0
+hi search cterm=none ctermbg=124 ctermfg=7
+hi Nope cterm=none ctermbg=124 ctermfg=7
+match Nope /\cudpate\|netowrk/
+
+" syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_mode_map = { "mode": "passive" }
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 " let g:flow#enable = 1
 " let g:flow#autoclose = 1

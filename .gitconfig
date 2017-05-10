@@ -1,7 +1,7 @@
 [user]
 name = James Hunter
-email = james@bjorkman.ca
-signingkey = 350117BEA90DB34D
+email = james.hunter@hootsuite.com
+signingkey = D25B3206BDC11CA0
 
 [push]
 default = current
@@ -9,12 +9,14 @@ default = current
 [alias]
 co = checkout
 lg = log --pretty=format:'%C(cyan bold)%G?%C(reset) %C(yellow)%h %C(blue)%<(14,trunc)%an %C(green dim)%ci%C(reset) %C(white)%s %C(bold)%C(magenta)%d%C(reset)'
+lgg = log --pretty=format:'%C(yellow)%h %C(cyan bold)%G?%C(reset) %C(blue)%<(14,trunc)%an %C(white)%s %C(red bold)%d%C(reset)'
 delete = branch -D
 del = branch -D
 rename = branch -m
 new = checkout -b
 branch = branch -vv
-	quick-stats = ! /usr/local/bin/git-quick-stats
+delp = "!f() { git branch | grep $1 | xargs git del; }; f"
+f = "!f() { git fetch; git status -sb; git branch -vv; }; f"
 
 [core]
 excludesfile = ~/.gitignore_global
@@ -23,5 +25,8 @@ editor = vim
 [credential]
 helper = cache
 
-; [commit]
-; gpgsign = true
+[branch]
+	autosetuprebase = always
+
+[commit]
+gpgsign = true

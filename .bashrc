@@ -8,9 +8,9 @@
 # [[ -s ~/.twig/twig-completion.bash ]] && source ~/.twig/twig-completion.bash
 
 # http://stackoverflow.com/questions/12399002/how-to-configure-git-bash-command-line-completion
-# if [ -f ~/.git-completion.bash ]; then
-#   . ~/.git-completion.bash
-# fi
+if [ -f ~/dotfiles/.git-completion.bash ]; then
+  . ~/dotfiles/.git-completion.bash
+fi
 
 # mac bash completion
 # https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
@@ -21,27 +21,34 @@ fi
 # alias la="ls -aGgh --color"
 alias la="ls -aGgh"
 alias tmux="TERM=xterm-256color tmux"
-alias twig="git branch -vv --sort=-authordate"
-alias weather="curl -s wttr.in/Melbourne"
+# alias twig="git branch -vv --sort=-authordate"
+alias weather="curl -s wttr.in/Vancouver"
+alias md="mdless"
+alias dashboard="cdd ~/work/dashboard"
+alias assignments="cdd ~/work/assignments"
+alias streams="cdd ~/work/streams"
+
 
 __div () {
   printf "\033[1;34m\n    *** *** *** *** *** ***\n\n\033[0m"
 }
 
+twig () {
+  printf "\033[1;35mDIR: \033[1;36m$(pwd)\033[0m\n"
+  git status -sb
+  git branch -vv --sort=-authordate
+}
+
 wat () {
-  __div
-  git status
-  __div
   twig
-  __div
-  git lg --graph --since="3 days ago"
+  git lg --graph --since="12 hours ago"
   __div
 }
 
 cdd () {
   __div
-  printf "\033[1;35m +> \033[1;36m~/work/bullclip.web\033[0m\n"
-  cd ~/work/bullclip.web
+  printf "\033[1;35m +> \033[1;36mcd $1\033[0m\n"
+  cd $1
   __div
   printf "\033[1;35m +> \033[1;36mgit fetch\033[0m\n"
   git fetch
@@ -75,5 +82,8 @@ PS2=" \[\033[1;35m\] >\[\033[1;36m\] "
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
-export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH
