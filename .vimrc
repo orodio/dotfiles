@@ -27,6 +27,7 @@ Plugin 'b0wter/spacecadet'
 Plugin 'nightsense/seabird'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'fleischie/vim-styled-components'
+Plugin 'fatih/vim-go'
 " Plugin 'orodio/vim-luna'
 " Plugin 'orodio/1989.vim'
 " Plugin 'orodio/vim-colors-japanesque'
@@ -154,3 +155,8 @@ match Nope /\cudpate\|netowrk/
 
 " let g:flow#enable = 1
 " let g:flow#autoclose = 1
+
+" language specific stuff
+autocmd FileType go setlocal shiftwidth=8 tabstop=8
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
+
