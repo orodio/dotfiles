@@ -13,14 +13,15 @@ lgg = log --pretty=format:'%C(yellow)%h %C(cyan bold)%G?%C(reset) %C(blue)%<(14,
 delete = branch -D
 del = branch -D
 rename = branch -m
-new = checkout -b
 branch = branch -vv
+new = "!f() { git checkout -b $1 origin/master; }; f"
 delp = "!f() { git branch | grep $1 | xargs git del; }; f"
 f = "!f() { git fetch; git status -sb; git branch -vv; }; f"
 
 [core]
 excludesfile = ~/.gitignore_global
 editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [credential]
 helper = cache
@@ -30,3 +31,10 @@ helper = cache
 
 [commit]
 gpgsign = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[diff]
+	tool = vimdiff

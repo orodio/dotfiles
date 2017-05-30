@@ -30,29 +30,19 @@ alias streams="cdd ~/work/streams"
 
 
 __div () {
-  printf "\033[1;34m\n    *** *** *** *** *** ***\n\n\033[0m"
+  printf "\033[2;90m\n$1\n\033[0m"
 }
 
 twig () {
-  printf "\033[1;35mDIR: \033[1;36m$(pwd)\033[0m\n"
-  git status -sb
-  git branch -vv --sort=-authordate
-}
-
-wat () {
-  twig
-  git lg --graph --since="12 hours ago"
-  __div
-}
-
-cdd () {
-  __div
-  printf "\033[1;35m +> \033[1;36mcd $1\033[0m\n"
-  cd $1
-  __div
-  printf "\033[1;35m +> \033[1;36mgit fetch\033[0m\n"
-  git fetch
-  wat
+  __div "Current Directory"
+  printf "  \033[1;35m\033[1;35m$(pwd)\033[0m\n"
+  __div "Branches"
+  git branch -vv --sort=-authordate --color | awk '{print "  " $0}'
+  __div "Status"
+  git -c color.ui=always status -sb | awk '{print "  " $0}'
+  __div "Diff"
+  git diff --stat --color | awk '{print "  " $0}'
+  printf "\n"
 }
 
 __git_branch () {
@@ -74,10 +64,9 @@ __prompt () {
 
 trap 'echo -ne "\033[0m"' DEBUG
 
-PS1=" \[\033[1;35m\]\$(__prompt)\[\033[1;36m\] "
-PS2=" \[\033[1;35m\] >\[\033[1;36m\] "
+PS1="\[\033[2;90m\]\$(__prompt)\[\033[1;36m\] "
+PS2="\[\033[2;90m\] >\[\033[1;36m\] "
 # PS1=" \[\033[1;35m\]\$(__prompt)\[\033[0m\] "
-
 # PS1="\$(__line)\n\n \e[31m\]\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
 
 PATH="$PATH:$HOME/selenium_drivers"
