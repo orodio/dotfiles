@@ -6,7 +6,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'luochen1990/rainbow'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-scripts/Align'
@@ -32,6 +34,11 @@ Plugin 'fatih/vim-go'
 " Plugin 'orodio/1989.vim'
 " Plugin 'orodio/vim-colors-japanesque'
 " Plugin 'vim-scripts/CSApprox'
+Plugin 'reasonml/vim-reason'
+" Plugin 'ryanoasis/vim-devicons'
+Plugin 'itchyny/lightline.vim'
+" Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 
@@ -76,7 +83,7 @@ set fileformats=unix,mac,dos
 set softtabstop=2
 set wildmenu
 set wildmode=longest,list,full
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+" set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set mouse=a
 set mousefocus
 set laststatus=2
@@ -95,6 +102,9 @@ set splitbelow
 " set cursorcolumn
 " set showcmd
 " set whichwrap+=<,>,h,l,[,]
+
+set wildignore+=/tmp/*,*.so,*.swp,*.zip,/log/*,/target/*,*.rbc
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
 let g:rainbow_active=1
@@ -129,6 +139,8 @@ endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
+let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
+
 " spell check git commits
 if has('autocmd')
   if has('spell')
@@ -139,6 +151,9 @@ endif
 hi search cterm=none ctermbg=124 ctermfg=7
 hi Nope cterm=none ctermbg=124 ctermfg=7
 match Nope /\cudpate\|netowrk/
+
+" hi Cursor ctermfg=233 ctermbg=153 guifg=#151515 guibg=#b0d0f0
+" hi Visual term=reverse ctermbg=237 guibg=#404040
 
 " syntastic
 " set statusline+=%#warningmsg#
@@ -160,3 +175,18 @@ match Nope /\cudpate\|netowrk/
 autocmd FileType go setlocal shiftwidth=8 tabstop=8
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 
+" LightLine
+" let g:lightline = {
+"       \ 'component_function': {
+"       \   'filetype': 'MyFiletype',
+"       \   'fileformat': 'MyFileformat',
+"       \ }
+"       \ }
+
+" function! MyFiletype()
+"   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+" endfunction
+
+" function! MyFileformat()
+"   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+" endfunction

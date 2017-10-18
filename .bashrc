@@ -28,6 +28,8 @@ alias dashboard="cdd ~/work/dashboard"
 alias assignments="cdd ~/work/assignments"
 alias streams="cdd ~/work/streams"
 
+export EDITOR=vim
+
 
 __div () {
   printf "\033[2;90m\n$1\n\033[0m"
@@ -72,7 +74,8 @@ PS2="\[\033[2;90m\] >\[\033[1;36m\] "
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 # export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

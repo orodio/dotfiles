@@ -1,6 +1,7 @@
 [user]
 name = James Hunter
 email = james.hunter@hootsuite.com
+; email = james@bjorkman.ca
 signingkey = D25B3206BDC11CA0
 
 [push]
@@ -17,6 +18,7 @@ branch = branch -vv
 new = "!f() { git checkout -b $1 origin/master; }; f"
 delp = "!f() { git branch | grep $1 | xargs git del; }; f"
 f = "!f() { git fetch; git status -sb; git branch -vv; }; f"
+yolo = "!f() { git commit --amend --no-edit; git push -f; }; f"
 
 [core]
 excludesfile = ~/.gitignore_global
