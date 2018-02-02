@@ -6,9 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'kien/ctrlp.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-scripts/Align'
@@ -27,22 +25,21 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'craigemery/vim-autotag'
 Plugin 'b0wter/spacecadet'
 Plugin 'nightsense/seabird'
-Plugin 'vim-syntastic/syntastic'
-" Plugin 'fleischie/vim-styled-components'
+" Plugin 'vim-syntastic/syntastic'
 Plugin 'fatih/vim-go'
-" Plugin 'orodio/vim-luna'
-" Plugin 'orodio/1989.vim'
-" Plugin 'orodio/vim-colors-japanesque'
-" Plugin 'vim-scripts/CSApprox'
-Plugin 'reasonml/vim-reason'
-" Plugin 'ryanoasis/vim-devicons'
-Plugin 'itchyny/lightline.vim'
-" Plugin 'nathanaelkane/vim-indent-guides'
-" Plugin 'Yggdroot/indentLine'
+Plugin 'reasonml-editor/vim-reason-plus'
+Plugin 'junegunn/fzf'
+Plugin 'noahfrederick/vim-hemisu'
+Plugin 'mileszs/ack.vim'
+Plugin 'w0rp/ale'
+" Plugin 'fleischie/vim-styled-components'
 call vundle#end()
 filetype plugin indent on
 
+set background=dark
+let g:rehash256 = 1
 syntax enable
+" colorscheme hemisu
 
 colorscheme jellybeans
 let g:jellybeans_use_term_italics = 1
@@ -97,22 +94,25 @@ set foldmethod=syntax
 set nofoldenable
 set splitright
 set splitbelow
-" set colorcolumn=80,120
+set colorcolumn=80,120
 " set cursorline
 " set cursorcolumn
 " set showcmd
 " set whichwrap+=<,>,h,l,[,]
 
 set wildignore+=/tmp/*,*.so,*.swp,*.zip,/log/*,/target/*,*.rbc
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
 let g:rainbow_active=1
 let g:rainbow_conf={ 'ctermfgs' : [66,24,2,28,5,26,48,26,44,32,21,40,2,5,8,3] }
 let g:jsx_ext_required=0 " jsx highlighting in .js files
-" let g:NERDTreeWinPos='right'
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_flow=1
+
+" NERDtree
+let NERDTreeShowHidden=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 map ; :
 inoremap jj <ESC>
@@ -122,11 +122,8 @@ nmap \g <esc>$<left><left><left><left>:vertical wincmd f<cr>
 nmap ,t :tabnew<cr>
 nmap ,l :Align<space>
 nmap ,e :NERDTreeToggle<cr>
-nmap ,; :CtrlP<cr>
-
-nmap \c <esc>:w<cr>:! git commit % -nm "AUTO: %"<cr>
-nmap \[ <esc>:w<cr>:! npm run lint<cr>
-nmap \] <esc>:w<cr>:! npm run test<cr>
+nmap ,; :FZF<cr>
+nmap ,' :ALEFix<cr>
 
 set exrc
 set secure
@@ -134,12 +131,10 @@ set secure
 function! s:RemoveConflictingAlignMaps()
   if exists("g:loaded_AlignMapsPlugin")
     AlignMapsClean
-  endif
+  endi
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
-
-let g:vimreason_extra_args_expr_reason = '"--print-width " . ' .  "min([120, winwidth('.')])"
 
 " spell check git commits
 if has('autocmd')
@@ -152,41 +147,20 @@ hi search cterm=none ctermbg=124 ctermfg=7
 hi Nope cterm=none ctermbg=124 ctermfg=7
 match Nope /\cudpate\|netowrk/
 
-" hi Cursor ctermfg=233 ctermbg=153 guifg=#151515 guibg=#b0d0f0
-" hi Visual term=reverse ctermbg=237 guibg=#404040
-
-" syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_mode_map = { "mode": "passive" }
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-" let g:flow#enable = 1
-" let g:flow#autoclose = 1
-
 " language specific stuff
 autocmd FileType go setlocal shiftwidth=8 tabstop=8
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 
-" LightLine
-" let g:lightline = {
-"       \ 'component_function': {
-"       \   'filetype': 'MyFiletype',
-"       \   'fileformat': 'MyFileformat',
-"       \ }
-"       \ }
-
-" function! MyFiletype()
-"   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-" endfunction
-
-" function! MyFileformat()
-"   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-" endfunction
+let g:ale_fixers={}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_linters={}
+let g:ale_linters['javascript'] = ['prettier', 'eslint', 'flow']
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_enter = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = 'xx'
+let g:ale_sign_warning = '!!'
+let g:ale_sign_column_always = 1
+" use quickfix list instead of loclist
+let g:ale_set_loclist=0
+let g:ale_set_quickfix=1

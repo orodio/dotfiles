@@ -2,7 +2,7 @@
 name = James Hunter
 email = james.hunter@hootsuite.com
 ; email = james@bjorkman.ca
-signingkey = D25B3206BDC11CA0
+; signingkey = D25B3206BDC11CA0
 
 [push]
 default = current
@@ -31,8 +31,9 @@ helper = cache
 [branch]
 	autosetuprebase = always
 
-[commit]
-gpgsign = true
+; [commit]
+;         pgsign = true
+
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52

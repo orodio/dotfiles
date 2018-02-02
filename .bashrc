@@ -29,6 +29,8 @@ alias assignments="cdd ~/work/assignments"
 alias streams="cdd ~/work/streams"
 
 export EDITOR=vim
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 __div () {
@@ -50,26 +52,36 @@ twig () {
 __git_branch () {
   local b="$(git symbolic-ref HEAD 2>/dev/null)";
   if [ -n "$b" ]; then
-    printf "\e[94m%s \e[0m" "${b##refs/heads/}";
+    printf "%s " "${b##refs/heads/}";
   fi
 }
 
-RED=$(tput setaf 1)
-
 __prompt () {
   if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-    printf "*>"
+    printf "*> "
   else
-    printf "+>"
+    printf "+> "
   fi
 }
 
 trap 'echo -ne "\033[0m"' DEBUG
 
-PS1="\[\033[2;90m\]\$(__prompt)\[\033[1;36m\] "
-PS2="\[\033[2;90m\] >\[\033[1;36m\] "
-# PS1=" \[\033[1;35m\]\$(__prompt)\[\033[0m\] "
-# PS1="\$(__line)\n\n \e[31m\]\w \$(__git_branch)\$(__prompt) \[\033[0m\]"
+BOLD="\[\e[1m\]"
+DIM="\[\e[2m\]"
+BLINK="\[\e[5m\]"
+RED="\[\e[31m\]"
+GREEN="\[\e[32m\]"
+BLUE="\[\e[34m\]"
+RESET="\[\e[0m\]"
+
+PS_TIME="${DIM}[${RESET}${BOLD}\A${RESET}${DIM}] ${RESET}"
+PS_PWD="${BOLD}${BLUE}\W/ ${RESET}"
+PS_BRANCH="${BOLD}${RED}\$(__git_branch)${RESET}"
+PS_PROMPT="${BOLD}${GREEN}\$(__prompt)${RESET}"
+PS_L1="\n${DIM}┌${RESET}"
+PS_L2="\n${DIM}│${RESET}"
+PS_L3="\n${DIM}└${RESET}"
+PS1="${PS_L1}${PS_TIME}${PS_PWD}${PS_BRANCH}${PS_L2}${PS_L3}${PS_PROMPT}"
 
 PATH="$PATH:$HOME/selenium_drivers"
 PATH="/usr/local/heroku/bin:$PATH"
@@ -79,3 +91,6 @@ export PATH="/usr/local/sbin:$PATH"
 export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+alias fe-global="docker exec -it fe-global"
