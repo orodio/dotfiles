@@ -1,6 +1,9 @@
 ```
 git clone https://github.com/orodio/dotfiles $HOME/dotfiles
 
+// https://github.com/ryanoasis/nerd-fonts - fura code not fira
+brew tap caskroom/fonts
+brew cask install font-firacode-nerd-font-mono 
 brew install fzf ag ack diff-so-fancy
 $(brew --prefix)/opt/fzf/install
 

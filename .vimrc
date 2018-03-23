@@ -5,8 +5,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-scripts/Align'
@@ -25,14 +25,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'craigemery/vim-autotag'
 Plugin 'b0wter/spacecadet'
 Plugin 'nightsense/seabird'
-" Plugin 'vim-syntastic/syntastic'
 Plugin 'fatih/vim-go'
 Plugin 'reasonml-editor/vim-reason-plus'
 Plugin 'junegunn/fzf'
 Plugin 'noahfrederick/vim-hemisu'
 Plugin 'mileszs/ack.vim'
 Plugin 'w0rp/ale'
-" Plugin 'fleischie/vim-styled-components'
+Plugin 'tpope/vim-markdown'
+Plugin 'fenetikm/falcon'
+Plugin 'mhinz/vim-startify'
+Plugin 'ryanoasis/vim-devicons' " always last
 call vundle#end()
 filetype plugin indent on
 
@@ -41,26 +43,27 @@ let g:rehash256 = 1
 syntax enable
 " colorscheme hemisu
 
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme falcon
 let g:jellybeans_use_term_italics = 1
 let g:jellybeans_overrides = {
       \  'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
       \}
 
 set t_Co=256
-set autoread
+set encoding=utf-8
+set guifont=FuraCode\ Nerd\ Font\ Mono:h9
 set nobackup
 set nowritebackup
 set noswapfile
 set autoindent
-set number
+" set number
 set backspace=indent,eol,start
 set backupcopy=yes
 set nomodeline
 set directory-=.
 set hidden
 set viminfo='1000,<0,@0,/0 " dont remeber things that can compromise data
-set encoding=utf-8
 set expandtab
 set hlsearch
 set incsearch
@@ -94,11 +97,7 @@ set foldmethod=syntax
 set nofoldenable
 set splitright
 set splitbelow
-set colorcolumn=80,120
-" set cursorline
-" set cursorcolumn
-" set showcmd
-" set whichwrap+=<,>,h,l,[,]
+set autoread
 
 set wildignore+=/tmp/*,*.so,*.swp,*.zip,/log/*,/target/*,*.rbc
 " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
@@ -160,7 +159,35 @@ let g:ale_fix_on_enter = 1
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = 'xx'
 let g:ale_sign_warning = '!!'
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 0
+let g:ale_set_signs = 0
 " use quickfix list instead of loclist
 let g:ale_set_loclist=0
 let g:ale_set_quickfix=1
+hi ALEWarning ctermbg=None cterm=Underline ctermfg=Red
+hi ALEError ctermbg=None cterm=Underline ctermfg=DarkRed
+
+let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+au CursorHold,CursorHoldI * checktime
+
+" NERDTress File highlighting only the glyph/icon
+" test highlight just the glyph (icons) in nerdtree:
+autocmd filetype nerdtree highlight haskell_icon ctermbg=none ctermfg=Red guifg=#ffa500
+autocmd filetype nerdtree highlight html_icon ctermbg=none ctermfg=Red guifg=#ffa500
+autocmd filetype nerdtree highlight go_icon ctermbg=none ctermfg=Red guifg=#ffa500
+
+autocmd filetype nerdtree syn match haskell_icon ## containedin=NERDTreeFile
+" if you are using another syn highlight for a given line (e.g.
+" NERDTreeHighlightFile) need to give that name in the 'containedin' for this
+" other highlight to work with it
+autocmd filetype nerdtree syn match html_icon ## containedin=NERDTreeFile,html
+autocmd filetype nerdtree syn match go_icon ## containedin=NERDTreeFile

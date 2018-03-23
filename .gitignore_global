@@ -5,3 +5,5 @@
 .vimrc
 tags
 .watchmanconfig
+
+__run__.js
