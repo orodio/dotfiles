@@ -4,6 +4,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/nerdtree'
@@ -17,6 +18,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'ervandew/supertab'
 Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-surround'
 Plugin 'derekwyatt/vim-scala'
@@ -57,7 +59,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set autoindent
-" set number
+set number
 set backspace=indent,eol,start
 set backupcopy=yes
 set nomodeline
@@ -127,6 +129,8 @@ nmap ,' :ALEFix<cr>
 set exrc
 set secure
 
+" autocmd BufNewfile,BufRead *.ts set syntax=javascript
+
 function! s:RemoveConflictingAlignMaps()
   if exists("g:loaded_AlignMapsPlugin")
     AlignMapsClean
@@ -142,8 +146,12 @@ if has('autocmd')
   endif
 endif
 
-hi search cterm=none ctermbg=124 ctermfg=7
-hi Nope cterm=none ctermbg=124 ctermfg=7
+hi search cterm=None ctermbg=124 ctermfg=7
+hi Nope cterm=None ctermbg=124 ctermfg=7
+hi ALEWarning ctermbg=None cterm=Underline ctermfg=Red
+hi ALEError ctermbg=None cterm=Underline ctermfg=DarkRed
+hi Comment cterm=none ctermfg=DarkGrey
+hi Visual ctermfg=0 ctermbg=220 cterm=None
 match Nope /\cudpate\|netowrk/
 
 " language specific stuff
@@ -160,14 +168,19 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_error = 'xx'
 let g:ale_sign_warning = '!!'
 " let g:ale_sign_column_always = 0
-let g:ale_set_signs = 0
+" let g:ale_set_signs = 0
 " use quickfix list instead of loclist
 let g:ale_set_loclist=0
 let g:ale_set_quickfix=1
-hi ALEWarning ctermbg=None cterm=Underline ctermfg=Red
-hi ALEError ctermbg=None cterm=Underline ctermfg=DarkRed
+
 
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
+
+" Lightline
+let g:falcon_lightline = 1
+let g:lightline={}
+let g:lightline.colorscheme='falcon'
+set noshowmode
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
