@@ -20,7 +20,7 @@ fi
 
 # alias la="ls -aGgh --color"
 alias la="ls -aGgh"
-alias tmux="TERM=xterm-256color tmux"
+# alias tmux="TERM=xterm-256color tmux"
 # alias twig="git branch -vv --sort=-authordate"
 alias weather="curl -s wttr.in/Vancouver"
 alias md="mdless"
@@ -94,3 +94,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias fe-global="docker exec -it fe-global"
+alias hs-scripts="docker exec -it hs-scripts"
+alias hs-app-inbox="docker exec -it hs-app-inbox"

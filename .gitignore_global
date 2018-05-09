@@ -2,8 +2,8 @@
 *.swp
 .DS_Store
 .exrc
+.ackrc
 .vimrc
-tags
 .watchmanconfig
-
+.notes.md
 __run__.js
