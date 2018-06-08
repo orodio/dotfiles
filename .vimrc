@@ -4,11 +4,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'luochen1990/rainbow'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'vim-scripts/Align'
 Plugin 'vim-scripts/DeleteTrailingWhitespace'
@@ -28,44 +26,21 @@ Plugin 'mileszs/ack.vim'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-markdown'
 Plugin 'fenetikm/falcon'
-Plugin 'mhinz/vim-startify'
 Plugin 'cohama/agit.vim'
 Plugin 'andreypopp/vim-colors-plain'
-" Plugin 'ryanoasis/vim-devicons' " always last
+Plugin 'styled-components/vim-styled-components'
+Plugin 'dracula/vim'
 call vundle#end()
 filetype plugin indent on
 
-" set background=dark
-set background=light
-colorscheme plain
+set background=dark
+colorscheme dracula
 let g:rehash256 = 1
 syntax enable
-" colorscheme hemisu
 
-" colorscheme falcon
-" colorscheme jellybeans
-" let g:jellybeans_use_term_italics = 1
-" let g:jellybeans_overrides = {
-"       \  'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-"       \}
-
-" hi Normal ctermbg=None
-" hi NonText ctermbg=None
-" " hi Search cterm=None ctermbg=124 ctermfg=7
-" hi Search ctermfg=0 ctermbg=220 cterm=None
-" hi Nope cterm=None ctermbg=124 ctermfg=7
-" hi ALEWarning ctermbg=None cterm=Underline ctermfg=Red
-" hi ALEError ctermbg=None cterm=Underline ctermfg=DarkRed
-" hi Statement cterm=Bold
-" hi NonText cterm=Bold
-" hi Directory cterm=Bold
-" hi StatusLine cterm=Bold
-" hi Comment cterm=italic
-" " hi Comment cterm=none ctermfg=DarkGrey
-" hi Visual ctermfg=0 ctermbg=220 cterm=None
-" hi Folded ctermbg=none ctermfg=220
-" hi Todo cterm=Bold ctermbg=None ctermfg=Red
-" match Nope /\cudpate\|netowrk/
+hi Normal ctermbg=None
+hi! link xmlEndTag Function
+hi Comment cterm=italic
 
 " set t_Co=256
 set encoding=utf-8
@@ -101,7 +76,7 @@ set fileformats=unix,mac,dos
 set softtabstop=2
 set wildmenu
 set wildmode=longest,list,full
-" set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildignore+=/tmp/*,*.so,*.swp,*.zip,/log/*,/target/*,*.rbc
 set mouse=a
 set mousefocus
 set laststatus=2
@@ -117,6 +92,7 @@ set foldmethod=manual
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
+
 function! NeatFoldText()
     let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
     let lines_count = v:foldend - v:foldstart + 1
@@ -130,12 +106,6 @@ endfunction
 
 set foldtext=NeatFoldText()
 
-set wildignore+=/tmp/*,*.so,*.swp,*.zip,/log/*,/target/*,*.rbc
-" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-
-
-" let g:rainbow_active=1
-" let g:rainbow_conf={ 'ctermfgs' : [66,24,2,28,5,26,48,26,44,32,21,40,2,5,8,3] }
 let g:jsx_ext_required=0 " jsx highlighting in .js files
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_flow=1
@@ -185,17 +155,9 @@ let g:ale_fix_on_enter = 1
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '=>'
 let g:ale_sign_warning = '->'
-" use quickfix list instead of loclist
-let g:ale_set_loclist=0
-let g:ale_set_quickfix=1
-""" let g:ale_set_signs = 0
 
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
 
-" Lightline
-" let g:falcon_lightline = 1
-" let g:lightline={}
-" let g:lightline.colorscheme='falcon'
 set noshowmode
 
 " GitGutter

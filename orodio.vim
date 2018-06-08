@@ -23,12 +23,13 @@ if &background == "dark"
   hi Mute ctermfg=234
   hi Comment cterm=italic ctermfg=238 " grey
 
-  hi Focus cterm=bold ctermbg=220 ctermfg=0
+  hi Focus ctermbg=220 ctermfg=0
   hi Accent ctermfg=4
   hi Good ctermfg=2
   hi Meh ctermfg=92
   hi Bad ctermfg=1
 
+  hi Magic cterm=bold ctermfg=91
   hi Success cterm=bold ctermfg=2
   hi Warning cterm=bold ctermfg=92
   hi Error cterm=bold ctermfg=1 ctermbg=none
@@ -54,13 +55,16 @@ else
   hi Comment cterm=italic ctermfg=248 " grey
 
   hi Focus cterm=bold ctermbg=220 ctermfg=0
-  hi Accent ctermfg=4
+  " hi Accent ctermfg=106 " Green
+  hi Accent ctermfg=202 " Orange
+  " hi Accent ctermfg=91 " Purple
   hi Good ctermfg=2
-  hi Meh ctermfg=92
+  hi Meh ctermfg=4
   hi Bad ctermfg=1
 
+  hi Magic cterm=bold ctermfg=91
   hi Success cterm=bold ctermfg=2
-  hi Warning cterm=bold ctermfg=92
+  hi Warning cterm=bold ctermfg=4
   hi Error cterm=bold ctermfg=1 ctermbg=none
 
   " Autocomplete Menu
@@ -70,11 +74,11 @@ else
   hi PmenuThumb ctermbg=0 ctermfg=0
 
   " Layout
-  hi Fill ctermfg=254 ctermbg=254
-  hi FillPrimary cterm=bold ctermfg=0 ctermbg=254
-  hi FillSecondary cterm=italic ctermfg=240 ctermbg=254
-  hi FillGood ctermfg=2 ctermbg=254
-  hi FillBad ctermfg=1 ctermbg=254
+  hi Fill ctermfg=255 ctermbg=255
+  hi FillPrimary cterm=bold ctermfg=0 ctermbg=255
+  hi FillSecondary cterm=italic ctermfg=240 ctermbg=255
+  hi FillGood ctermfg=2 ctermbg=255
+  hi FillBad ctermfg=1 ctermbg=255
 endif
 
 hi! link VertSplit Fill
@@ -92,7 +96,7 @@ hi! link Folded Subtle
 hi! link Visual Focus
 hi! link VisualNOS Focus
 hi! link WildMenu Focus
-hi! link Directory Accent
+hi! link Directory Strong
 
 " Tabs
 hi! link Title Accent
@@ -100,18 +104,18 @@ hi! link TabLine FillSecondary
 hi! link TabLineFill Fill
 hi! link TabLineSel FillPrimary
 
-hi! link Noise Accent
+hi! link Noise Subtle
 hi! link Constant Strong
 
 " Syntax
 hi! link Character Strong
-hi! link Number Meh
-hi! link Float Meh
-hi! link Boolean Meh
-hi! link String Comment
+hi! link Number Magic
+hi! link Float Magic
+hi! link Boolean Magic
+hi  String cterm=italic
 
 hi! link Identifier Strong
-hi! link Function Normal
+hi! link Function Strong
 
 hi! link Statement Constant
 hi! link Conditional Strong
@@ -127,7 +131,7 @@ hi! link PreProc Strong
 " hi! link Macro PreProc
 " hi! link PreCondit PreProc
 
-hi! link Type Normal
+hi! link Type Comment
 " hi! link Structure Type
 " hi! link Typedef Type
 hi! link StorageClass Strong
@@ -148,6 +152,10 @@ hi! link MoreMsg Warning
 hi! link ModeMsg MoreMsg
 hi! link Question Warning
 hi! link WarningMsg Warning
+
+" React?
+hi! link xmlTagName Strong
+hi! link xmlAttrib Comment
 
 " Alt Vim Usage
 hi! link DiffAdd Good
@@ -170,3 +178,7 @@ hi! link GitGutterAdd Good
 hi! link GitGutterChange Meh
 hi! link GitGutterDelete Bad
 hi! link GitGutterChangeDelete Bad
+
+hi! link CursorLine FillPrimary
+
+

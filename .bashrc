@@ -94,5 +94,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias fe-global="docker exec -it fe-global"
+alias tapas="docker exec -it fe-global ./tapas"
 alias hs-scripts="docker exec -it hs-scripts"
 alias hs-app-inbox="docker exec -it hs-app-inbox"

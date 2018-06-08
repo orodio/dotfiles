@@ -1,8 +1,6 @@
 [user]
 name = James Hunter
 email = james.hunter@hootsuite.com
-; email = james@bjorkman.ca
-; signingkey = D25B3206BDC11CA0
 
 [push]
 default = current
@@ -10,54 +8,41 @@ default = current
 [alias]
 co = checkout
 lg = log --pretty=format:'%C(cyan bold)%G?%C(reset) %C(yellow)%h %C(blue)%<(14,trunc)%an %C(green dim)%ci%C(reset) %C(white)%s %C(bold)%C(magenta)%d%C(reset)'
-lgg = log --pretty=format:'%C(yellow)%h %C(cyan bold)%G?%C(reset) %C(blue)%<(14,trunc)%an %C(white)%s %C(red bold)%d%C(reset)'
-delete = branch -D
 del = branch -D
 rename = branch -m
 branch = branch -vv
-new = "!f() { git checkout -b $1 origin/master; }; f"
 delp = "!f() { git branch | grep $1 | xargs git del; }; f"
-f = "!f() { git fetch; git status -sb; git branch -vv; }; f"
-yolo = "!f() { git commit --amend --no-edit; git push -f; }; f"
+YOLO = "!f() { git commit --amend --no-edit; git push -f; }; f"
 
 [core]
 excludesfile = ~/.gitignore_global
 editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+pager = diff-so-fancy | less --tabs=4 -RFX
 
 [credential]
 helper = cache
 
 [branch]
-	autosetuprebase = always
-
-; [commit]
-;         pgsign = true
-
-; [color "diff-highlight"]
-; 	oldNormal = red bold
-; 	oldHighlight = red bold 52
-; 	newNormal = green bold
-; 	newHighlight = green bold 22
+autosetuprebase = always
 
 [color]
-  ui = auto
+ui = auto
 
 [color "branch"]
-  current = yellow
-  local = 241
-  remote = green
+current = yellow
+local = 241
+remote = green
 
 [color "diff"]
-  meta = yellow
-  frag = magenta
-  old = red
-  new = green
+meta = yellow
+frag = magenta
+old = red
+new = green
 
 [color "status"]
-  added = green
-  changed = yellow
-  untracked = magenta
+added = green
+changed = yellow
+untracked = magenta
 
 [diff]
-	tool = vimdiff
+tool = vimdiff
