@@ -19,7 +19,6 @@ Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'fatih/vim-go'
 Plugin 'reasonml-editor/vim-reason-plus'
 Plugin 'junegunn/fzf'
 Plugin 'mileszs/ack.vim'
@@ -30,6 +29,14 @@ Plugin 'cohama/agit.vim'
 Plugin 'andreypopp/vim-colors-plain'
 Plugin 'styled-components/vim-styled-components'
 Plugin 'dracula/vim'
+Plugin 'craigemery/vim-autotag'
+Plugin 'merlinrebrovic/focus.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'easymotion/vim-easymotion'
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'mattn/emmet-vim'
+Plugin 'posva/vim-vue'
+Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
 
@@ -41,6 +48,7 @@ syntax enable
 hi Normal ctermbg=None
 hi! link xmlEndTag Function
 hi Comment cterm=italic
+hi SpecialKey cterm=none ctermfg=8
 
 " set t_Co=256
 set encoding=utf-8
@@ -49,7 +57,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 set autoindent
-set number
+set nonumber
+" set number
 set backspace=indent,eol,start
 set backupcopy=yes
 set nomodeline
@@ -68,7 +77,9 @@ set shiftround
 set iskeyword+=-
 set lazyredraw
 set list
-set listchars=tab:▸\ ,trail:▫
+set listchars=tab:›\ ,trail:•
+" set listchars=tab:∆\ ,trail:•
+" set listchars=tab:│\ ,trail:•
 set scrolloff=3
 set shiftwidth=2
 set ttyfast
@@ -125,6 +136,10 @@ nmap ,e :NERDTreeToggle<cr>
 nmap ,; :FZF<cr>
 nmap ,' :ALEFix<cr>
 
+let g:focusmode_width = 80
+let g:focus_use_default_mapping = 0
+nmap ,f <Plug>FocusModeToggle
+
 function! s:RemoveConflictingAlignMaps()
   if exists("g:loaded_AlignMapsPlugin")
     AlignMapsClean
@@ -140,9 +155,11 @@ if has('autocmd')
   endif
 endif
 
+let g:fzf_tags_command = 'ctags -R'
+
 
 " language specific stuff
-autocmd FileType go setlocal shiftwidth=8 tabstop=8
+autocmd FileType go setlocal shiftwidth=4 tabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 
 let g:ale_fixers={}

@@ -18,20 +18,22 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+# brew install ctags
+if [ -f $(brew --prefix)/bin/ctags ]; then
+  alias ctags="`brew --prefix`/bin/ctags"
+  alias ctags-index="ctags -R"
+  # alias ctags-index="ctags -R && sed -i ‘’ -E ‘/^(if|switch|function|module\.exports|it|describe).+language:js$/d’ tags"
+fi
+
 # alias la="ls -aGgh --color"
 alias la="ls -aGgh"
 # alias tmux="TERM=xterm-256color tmux"
 # alias twig="git branch -vv --sort=-authordate"
 alias weather="curl -s wttr.in/Vancouver"
-alias md="mdless"
-alias dashboard="cdd ~/work/dashboard"
-alias assignments="cdd ~/work/assignments"
-alias streams="cdd ~/work/streams"
 
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 
 __div () {
   printf "\033[2;90m\n$1\n\033[0m"
@@ -95,5 +97,3 @@ export NVM_DIR="$HOME/.nvm"
 
 alias fe-global="docker exec -it fe-global"
 alias tapas="docker exec -it fe-global ./tapas"
-alias hs-scripts="docker exec -it hs-scripts"
-alias hs-app-inbox="docker exec -it hs-app-inbox"
