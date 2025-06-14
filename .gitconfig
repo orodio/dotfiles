@@ -1,8 +1,6 @@
 [user]
-; name = qv vg
-; email = github@qv.vg
-name = James Hunter
-email = james.hunter@hootsuite.com
+name = qv vg
+email = github@qv.vg
 
 [push]
 default = current
