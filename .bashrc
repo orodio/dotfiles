@@ -32,6 +32,9 @@ alias la="ls -aGgh"
 alias weather="curl -s wttr.in/Vancouver"
 
 export EDITOR=vim
+
+# FZF STUFF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 

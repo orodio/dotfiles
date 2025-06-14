@@ -162,6 +162,10 @@ let g:fzf_tags_command = 'ctags -R'
 autocmd FileType go setlocal shiftwidth=4 tabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
+
 let g:ale_fixers={}
 let g:ale_fixers['elixir'] = ['mix_format']
 let g:ale_fixers['javascript'] = ['prettier']
