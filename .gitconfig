@@ -46,3 +46,6 @@ untracked = magenta
 
 [diff]
 tool = vimdiff
+
+[init]
+defaultBranch = main
