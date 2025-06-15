@@ -57,8 +57,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 set autoindent
-set nonumber
-" set number
+" set nonumber
+set number
 set backspace=indent,eol,start
 set backupcopy=yes
 set nomodeline
